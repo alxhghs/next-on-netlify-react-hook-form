@@ -1,9 +1,24 @@
 import Link from "next/link";
+import { NextPage, NextPageContext } from "next";
 
-export default () => {
+type Props = {
+    query: any;
+};
+const Page: NextPage<Props> = ({ query }) => {
     return (
-        <Link href="/[destination]/here" as="/123/here">
-            go to destination
-        </Link>
+        <>
+            {JSON.stringify(query)}
+            <Link href="/[destination]/here" as="/123/here">
+                go to destination
+            </Link>
+        </>
     )
 };
+
+Page.getInitialProps = ({ query }: NextPageContext) => {
+    return {
+        query,
+    };
+};
+
+export default Page;
